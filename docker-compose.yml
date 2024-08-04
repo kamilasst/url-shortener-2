@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: url-shortener-db-postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres_network
+
+networks:
+  postgres_network:
