@@ -5,7 +5,9 @@ import com.challenge.urlshortener.exception.ErrorMessageConstants;
 import com.challenge.urlshortener.exception.EntityAlreadyExistsException;
 import com.challenge.urlshortener.domain.model.Url;
 import com.challenge.urlshortener.repository.IUrlRepository;
+import com.challenge.urlshortener.service.interfaces.IUrlAccessService;
 import com.challenge.urlshortener.service.interfaces.IUrlService;
+import com.challenge.urlshortener.service.interfaces.IUrlShortGenerateService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +18,12 @@ import java.util.Optional;
 public class UrlServiceImpl implements IUrlService {
 
     private final IUrlRepository urlRepository;
-    private final UrlShortGenerateServiceImpl urlShortGenerateService;
-    private final UrlAccessServiceImpl urlAccessService;
+    private final IUrlAccessService urlAccessService;
+    private final IUrlShortGenerateService urlShortGenerateService;
 
     public UrlServiceImpl(final IUrlRepository urlRepository,
-                          final UrlShortGenerateServiceImpl urlShortGenerateService,
-                          final UrlAccessServiceImpl urlAccessService){
+                          final IUrlShortGenerateService urlShortGenerateService,
+                          final IUrlAccessService urlAccessService){
 
         this.urlRepository = urlRepository;
         this.urlShortGenerateService = urlShortGenerateService;

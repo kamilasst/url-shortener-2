@@ -11,7 +11,6 @@ import java.util.Set;
 @Table(name = "URL")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
