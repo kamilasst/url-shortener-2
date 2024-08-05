@@ -15,7 +15,7 @@ O projeto é responsável por encurtar e gerenciar URLs, transformando URLs long
 - JUnit (Framework de Testes para Java)
 
 ---
-#### 📌 Funcionalidades
+### 📌 Funcionalidades
 **Cadastrar URL:** Realiza o cadastro de uma URL longa, e retornar uma URL encurtada correspondente;
 
 
@@ -26,7 +26,7 @@ O projeto é responsável por encurtar e gerenciar URLs, transformando URLs long
 
 ---
 
-#### 🛠 Como Executar
+### 🛠 Como Executar
 
 **Passos para Executar:**
 
@@ -53,6 +53,6 @@ https://github.com/kamilasst/url-shortener-2.git
 
 ---
 
-#### 📌 Problemas e Sugestões
+### 📌 Problemas e Sugestões
 Se encontrar algum problema ou tiver alguma sugestão, por favor abra uma nova issue neste repositório ou entre em contato com kamilasantosdev@gmail.com
 
