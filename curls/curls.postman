@@ -1,0 +1,12 @@
+1 - Responsible for registering the long URL in a shortened URL
+curl --location 'localhost:8080/api/url/shorten' \
+--header 'Content-Type: application/json' \
+--data '{
+    "originalUrl": "www.kamilasantos.com"
+}'
+
+2 - Responsible for get the original Url via the shortened Url
+curl --location 'localhost:8080/api/url/6b7a0164'
+
+3- Responsible for get access statistics
+curl --location 'localhost:8080/api/access/statistics/d4b7dedd'
