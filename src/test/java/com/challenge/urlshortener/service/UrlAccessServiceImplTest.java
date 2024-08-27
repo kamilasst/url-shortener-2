@@ -3,8 +3,10 @@ package com.challenge.urlshortener.service;
 import com.challenge.urlshortener.domain.dto.response.UrlAccessResponse;
 import com.challenge.urlshortener.domain.model.Access;
 import com.challenge.urlshortener.domain.model.Url;
+import com.challenge.urlshortener.exception.ErrorMessageConstants;
 import com.challenge.urlshortener.mock.MockConstants;
 import com.challenge.urlshortener.repository.IUrlAccessRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -36,11 +38,12 @@ public class UrlAccessServiceImplTest {
         //assert
         verify(urlAccessRepository, times(1)).save(any(Access.class));
     }
-
+    //
     @Test
     public void shouldGetStatisticsSuccess() {
 
         // arrange
+        when(urlAccessRepository.existsByShortUrl(MockConstants.SHORTENED_URL_BY_GOOGLE_EXPECTED)).thenReturn(true);
         when(urlAccessRepository.findCountByShortUrl(MockConstants.SHORTENED_URL_BY_GOOGLE_EXPECTED)).thenReturn(MockConstants.STATISTICS_10);
         when(urlAccessRepository.findCountDays(MockConstants.SHORTENED_URL_BY_GOOGLE_EXPECTED)).thenReturn(MockConstants.STATISTICS_5);
 
@@ -51,4 +54,17 @@ public class UrlAccessServiceImplTest {
         Assertions.assertEquals(MockConstants.STATISTICS_10, response.getTotalAccesses());
         Assertions.assertEquals(MockConstants.STATISTICS_2, response.getAverageAccessPerDay());
     }
+
+    @Test
+    public void shouldGetStatisticsEntityNotFoundException() {
+
+        //arrange
+        when(urlAccessRepository.existsByShortUrl(MockConstants.SHORTENED_URL_BY_GOOGLE_EXPECTED)).thenReturn(false);
+
+        //assert
+        Assertions.assertThrows(EntityNotFoundException.class, () -> {
+            urlAccessService.getStatistics(MockConstants.SHORTENED_URL_BY_GOOGLE_EXPECTED);
+        }, ErrorMessageConstants.MESSAGE_03_SHORT_URL_NOT_FOUND);
+    }
+
 }
